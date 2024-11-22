@@ -1,11 +1,9 @@
-const button = document.querySelector('.button-add-task')
-const input = document.querySelector('.input-task')
-const listaCompleta = document.querySelector('.list-tasks')
+const button = document.querySelector('.button-add-task');
+const input = document.querySelector('.input-task');
+const listaCompleta = document.querySelector('.list-tasks');
 const urgentCheckbox = document.querySelector('.urgent-task');
 
-let minhaListaDeItens = []
-
-
+let minhaListaDeItens = [];
 
 function adicionarNovaTarefa() {
     if (input.value.trim() === '') {
@@ -49,20 +47,15 @@ function mostrarTarefas() {
 }
 
 function editarTarefa(posicao) {
-
     const item = minhaListaDeItens[posicao];
-
-
     const tarefaElemento = listaCompleta.children[posicao];
     const textoAtual = item.tarefa;
-
 
     tarefaElemento.innerHTML = `
         <input type="text" class="edit-input" value="${textoAtual}" />
         <button class="save-button" onclick="salvarTarefa(${posicao})">Salvar</button>
         <button class="cancel-button" onclick="mostrarTarefas()">Cancelar</button>
     `;
-
 
     tarefaElemento.querySelector('.edit-input').focus();
 }
@@ -76,26 +69,21 @@ function salvarTarefa(posicao) {
         return;
     }
 
-    // Atualiza o texto da tarefa no array
     minhaListaDeItens[posicao].tarefa = novoTexto;
 
-    // Atualiza a exibição das tarefas
     mostrarTarefas();
 }
 
-
-
-
 function concluirTarefa(posicao) {
-    minhaListaDeItens[posicao].concluida = !minhaListaDeItens[posicao].concluida
+    minhaListaDeItens[posicao].concluida = !minhaListaDeItens[posicao].concluida;
 
-    mostrarTarefas()
+    mostrarTarefas();
 }
 
 function deletarItem(posicao) {
-    minhaListaDeItens.splice(posicao, 1)
+    minhaListaDeItens.splice(posicao, 1);
 
-    mostrarTarefas()
+    mostrarTarefas();
 }
 
 function recarregarTarefas() {
@@ -112,13 +100,10 @@ function toggleImportante(posicao) {
     // Alterna a propriedade "importante" da tarefa
     minhaListaDeItens[posicao].importante = !minhaListaDeItens[posicao].importante;
 
-    // Atualiza a exibição
+    // Exibe novamente as tarefas após a alteração
     mostrarTarefas();
 }
 
+recarregarTarefas();
 
-recarregarTarefas()
-
-button.addEventListener('click', adicionarNovaTarefa)
-
-
+button.addEventListener('click', adicionarNovaTarefa);
