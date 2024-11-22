@@ -81,7 +81,7 @@ function concluirTarefa(posicao) {
 }
 
 function deletarItem(posicao) {
-    minhaListaDeItens.splice(posicao, 1);
+    minhaListaDeItens.splice(posicao, 1); // Remove a tarefa do array
 
     mostrarTarefas();
 }
